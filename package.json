@@ -1,0 +1,53 @@
+{
+  "name": "devshed-tui",
+  "version": "0.1.0",
+  "description": "Terminal User Interface for DevShed project and task management",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "devshed": "./bin/devshed"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "README.md"
+  ],
+  "keywords": [
+    "cli",
+    "tui",
+    "terminal",
+    "project-management",
+    "task-management",
+    "devshed",
+    "developer-tools"
+  ],
+  "author": "Jeffrey Behnke <code@devshed.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/DevShedLabs/tui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevShedLabs/tui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DevShedLabs/tui/issues"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "@types/prompts": "^2.4.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/react": "^19.1.8",
+    "commander": "^14.0.0",
+    "ink": "^6.0.1",
+    "prompts": "^2.4.2"
+  }
+}
