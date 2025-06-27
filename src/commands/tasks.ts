@@ -5,6 +5,7 @@ import { TaskList } from '../components/TaskList.js';
 import { TaskSelector } from '../components/TaskSelector.js';
 import { TaskDetails } from '../components/TaskDetails.js';
 import { TaskCreator } from '../components/TaskCreator.js';
+import { TaskUpdater } from '../components/TaskUpdater.js';
 import { ConfigManager } from '../utils/config.js';
 
 export class TasksCommand extends Command {
@@ -37,6 +38,10 @@ export class TasksCommand extends Command {
       .alias('get')
       .description('Show detailed information about current task or specified task')
       .action(this.readTask);
+    
+    this.command('update [task-id]')
+      .description('Update a task (status, title, description)')
+      .action(this.updateTask.bind(this));
   }
 
   private async listTasks(projectId?: string) {
@@ -99,5 +104,38 @@ export class TasksCommand extends Command {
 
   private async readTask(taskId?: string) {
     render(React.createElement(TaskDetails, { taskId }));
+  }
+
+  private async updateTask(taskId?: string) {
+    try {
+      if (taskId) {
+        // Task ID provided, go directly to update
+        render(React.createElement(TaskUpdater, { 
+          taskId, 
+          onComplete: () => process.exit(0),
+          onCancel: () => process.exit(0)
+        }));
+      } else {
+        // No task ID provided, use current task or show selector
+        const configManager = ConfigManager.getInstance();
+        const config = await configManager.loadConfig();
+        
+        if (config?.currentTaskId) {
+          // Use current task
+          render(React.createElement(TaskUpdater, { 
+            taskId: config.currentTaskId, 
+            onComplete: () => process.exit(0),
+            onCancel: () => process.exit(0)
+          }));
+        } else {
+          // No current task, show task selector
+          console.error('❌ No task specified and no current task set.');
+          console.error('   Use "devshed tasks switch" to set a current task, or');
+          console.error('   Use: devshed tasks update <task-id>');
+        }
+      }
+    } catch (error) {
+      console.error(`❌ Error updating task: ${error}`);
+    }
   }
 }
