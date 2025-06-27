@@ -15,7 +15,7 @@ async function main() {
     program
       .name('devshed')
       .description('DevShed Terminal User Interface')
-      .version('0.1.2');
+      .version('0.1.3');
 
     // Add init command for manual config setup
     const initManager = new InitManager();
