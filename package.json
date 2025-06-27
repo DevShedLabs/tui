@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "devshed": "./bin/devshed"
+    "devshed": "bin/devshed"
   },
   "files": [
     "dist/",
