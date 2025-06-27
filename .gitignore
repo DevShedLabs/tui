@@ -2,7 +2,6 @@ node_modules/
 dist/
 config.json
 .env
-package-lock.json
 .claude
 *.tgz
 pdr.md
