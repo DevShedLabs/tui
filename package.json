@@ -1,6 +1,6 @@
 {
   "name": "@devshed/tui",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Terminal User Interface for DevShed project and task management",
   "main": "dist/index.js",
   "scripts": {
