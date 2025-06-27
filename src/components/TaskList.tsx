@@ -24,9 +24,6 @@ export const TaskList: React.FC<TaskListProps> = ({ projectId }) => {
 
         const response = await apiClient.listTasks(projectId);
         if (response.success && response.data) {
-          // Debug: log the actual response structure
-          console.log('Tasks API Response:', response.data);
-          
           // Handle different response formats (same logic as ProjectList)
           if (Array.isArray(response.data)) {
             setTasks(response.data);
