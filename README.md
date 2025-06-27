@@ -13,11 +13,12 @@ A Terminal User Interface (TUI) for DevShed that allows developers to manage pro
 ### ✅ Current Features
 
 - **📁 Project Management**: List and create projects
-- **📋 Task Management**: List, create, and comment on tasks  
+- **📋 Task Management**: List, create, and comment on tasks with status selection
 - **🎯 Context Management**: Switch between projects and organizations
 - **⚙️ Configuration System**: Automatic setup and persistent configuration
 - **🔧 Interactive Setup**: Guided configuration with validation
 - **🎨 Beautiful TUI**: React-based terminal interface with Ink
+- **🔄 Auto Updates**: Automatic update notifications and manual update command
 
 ### 🚧 Planned Features
 
@@ -35,6 +36,16 @@ A Terminal User Interface (TUI) for DevShed that allows developers to manage pro
 - Node.js 18+ 
 - npm or yarn
 - DevShed account and API access
+
+### Install from NPM
+
+```bash
+# Install globally from NPM
+npm install -g @devshed/tui
+
+# Verify installation
+devshed --version
+```
 
 ### Install from Source
 
@@ -114,11 +125,20 @@ devshed tasks list
 # List tasks for specific project
 devshed tasks list project-id
 
-# Create a new task
-devshed tasks create project-id "Task title"
+# Create a new task (with interactive status selection)
+devshed tasks create "Task title"
+
+# Create task in specific project
+devshed tasks create-in project-id "Task title"
 
 # Add comment to a task
 devshed tasks comment task-id "My comment"
+
+# Switch to a different task interactively
+devshed tasks switch
+
+# Show task details
+devshed tasks read
 ```
 
 ### Context Management
@@ -140,11 +160,17 @@ devshed context use project "Project Name"
 devshed context use org "Organization Name"
 ```
 
-### Configuration
+### Configuration & Updates
 
 ```bash
 # Initialize or reconfigure DevShed TUI
 devshed init
+
+# Update to latest version
+devshed update
+
+# Check current version
+devshed --version
 
 # Show help for any command
 devshed <command> --help
@@ -434,9 +460,40 @@ chmod +x bin/devshed
 - [ ] Performance optimizations
 - [ ] Offline mode
 
+## 🔄 Updates
+
+### Automatic Update Notifications
+
+DevShed TUI automatically checks for updates and shows notifications when newer versions are available. Simply run any command and you'll see:
+
+```
+Update available 0.1.3 → 0.1.4
+Run npm i -g @devshed/tui to update
+```
+
+### Manual Updates
+
+```bash
+# Check for and install updates
+devshed update
+
+# This will:
+# 1. Check current vs latest version
+# 2. Show what's being updated
+# 3. Install the latest version
+# 4. Confirm successful update
+```
+
+### Update Features
+
+- **Version Comparison**: Only updates when newer versions are available
+- **Error Handling**: Falls back to manual npm command if automatic update fails
+- **No Interruption**: Updates happen in background, no service disruption
+- **Version Sync**: Automatically uses correct version from package.json
+
 ## Versioning
-1. Bump version in package.json
-2. Bump version in src/index.tx `.version('0.1.0');`
+
+The version is automatically managed in package.json and synced throughout the application.
 
 ---
 
