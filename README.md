@@ -2,6 +2,12 @@
 
 A Terminal User Interface (TUI) for DevShed that allows developers to manage projects and tasks directly from their terminal environment.
 
+
+[![Node.js Package](https://github.com/DevShedLabs/tui/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/DevShedLabs/tui/actions/workflows/npm-publish.yml)
+
+
+
+
 ## 🚀 Features
 
 ### ✅ Current Features
